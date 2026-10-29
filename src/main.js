@@ -25,18 +25,21 @@ placeholder="Search PaleoArchive..."
 
 const dinosaurs = [
   {
+    id: 1,
     name: "Tyrannosaurus rex",
     period: "Late Cretaceous",
     diet: "Carnivore",
     location: "North America",
   },
   {
+    id: 2,
     name: "Stegosaurus stenops",
     period: "Late Jurassic",
     diet: "Herbivore",
     location: "North America",
   },
   {
+    id: 3,
     name: "Velociraptor mongoliensis",
     period: "Late Cretaceous",
     diet: "Carnivore",
@@ -53,7 +56,7 @@ function renderDinosaurs(dinosaurList) {
   archive.innerHTML = dinosaurList
     .map((dinosaur) => {
       return `
-  <article>
+  <article data-id="${dinosaur.id}">
 <h2>${dinosaur.name}</h2>
 <p>Period: ${dinosaur.period}</p>
 <p>Diet: ${dinosaur.diet}</p>
@@ -62,6 +65,20 @@ function renderDinosaurs(dinosaurList) {
 `;
     })
     .join("");
+}
+
+function renderDinosaurDetails(dinosaur) {
+  archive.innerHTML = `
+   <button id="backButton">← Back to archive</button>
+
+   <article class="detail-card">
+   <h2>${dinosaur.name}</h2>
+   <p>Period: ${dinosaur.period}</p>
+   <p>Diet: ${dinosaur.diet}</p>
+   <p>Location: ${dinosaur.location}</p>
+   </article>
+  
+  `;
 }
 
 function searchDinosaurs() {
@@ -80,6 +97,21 @@ function searchDinosaurs() {
 //EVENTS
 
 searchInput.addEventListener("input", searchDinosaurs);
+
+archive.addEventListener("click", (event) => {
+  const card = event.target.closest("article");
+
+  if (!card) {
+    return;
+  }
+
+  const dinosaurId = Number(card.dataset.id);
+
+  const selectedDinosaur = dinosaurs.find((dinosaur) => {
+    return dinosaur.id === dinosaurId;
+  });
+  renderDinosaurDetails(selectedDinosaur);
+});
 
 //START APP
 renderDinosaurs(dinosaurs);
