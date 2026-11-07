@@ -1,5 +1,7 @@
 import "./style.css";
 
+//CONSTANTS
+
 //APP
 
 const app = document.querySelector("#app");
@@ -15,6 +17,7 @@ app.innerHTML = `
 id="searchInput"
 placeholder="Search PaleoArchive..."
 >
+<p id="resultCount"></p>
 
 <section id="archive"></section>
 </main>
@@ -51,6 +54,9 @@ const dinosaurs = [
 
 const archive = document.querySelector("#archive");
 const searchInput = document.querySelector("#searchInput");
+const resultCount = document.querySelector("#resultCount");
+
+// FUNCTIONS
 
 function renderDinosaurs(dinosaurList) {
   archive.innerHTML = dinosaurList
@@ -65,6 +71,13 @@ function renderDinosaurs(dinosaurList) {
 `;
     })
     .join("");
+
+  if (dinosaurList.length === 0) {
+    archive.textContent = "No dinosaurs found. Try another search.";
+  }
+
+  const word = dinosaurList.length === 1 ? "dinosaur" : "dinosaurs";
+  resultCount.textContent = `${dinosaurList.length} ${word} found.`;
 }
 
 function renderDinosaurDetails(dinosaur) {
@@ -79,6 +92,11 @@ function renderDinosaurDetails(dinosaur) {
    </article>
   
   `;
+  const backButton = document.querySelector("#backButton");
+
+  backButton.addEventListener("click", () => {
+    renderDinosaurs(dinosaurs);
+  });
 }
 
 function searchDinosaurs() {
