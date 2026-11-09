@@ -17,6 +17,12 @@ app.innerHTML = `
 id="searchInput"
 placeholder="Search PaleoArchive..."
 >
+<select id="periodFilter">
+<option value="all">All Periods</option>
+<option value="Triassic">Triassic</option>
+<option value="Jurassic">Jurassic</option>
+<option value="Cretaceous">Cretaceous</option>
+</select>
 <p id="resultCount"></p>
 
 <section id="archive"></section>
@@ -55,6 +61,7 @@ const dinosaurs = [
 const archive = document.querySelector("#archive");
 const searchInput = document.querySelector("#searchInput");
 const resultCount = document.querySelector("#resultCount");
+const periodFilter = document.querySelector("#periodFilter");
 
 // FUNCTIONS
 
@@ -99,23 +106,27 @@ function renderDinosaurDetails(dinosaur) {
   });
 }
 
-function searchDinosaurs() {
+function updateDinosaurs() {
   const searchTerm = searchInput.value.toLowerCase();
+  const selectedPeriod = periodFilter.value;
+
   const filteredDinosaurs = dinosaurs.filter((dinosaur) => {
-    return (
+    const matchesSearch =
       dinosaur.name.toLowerCase().includes(searchTerm) ||
       dinosaur.period.toLowerCase().includes(searchTerm) ||
       dinosaur.diet.toLowerCase().includes(searchTerm) ||
-      dinosaur.location.toLowerCase().includes(searchTerm)
-    );
+      dinosaur.location.toLowerCase().includes(searchTerm);
+    const matchesPeriod =
+      dinosaur.period.includes(selectedPeriod) || selectedPeriod === "all";
+    return matchesSearch && matchesPeriod;
   });
   renderDinosaurs(filteredDinosaurs);
 }
 
 //EVENTS
 
-searchInput.addEventListener("input", searchDinosaurs);
-
+searchInput.addEventListener("input", updateDinosaurs);
+periodFilter.addEventListener("change", updateDinosaurs);
 archive.addEventListener("click", (event) => {
   const card = event.target.closest("article");
 
