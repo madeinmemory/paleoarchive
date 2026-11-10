@@ -1,4 +1,6 @@
 import "./style.css";
+import { dinosaurs } from "./data/dinosaurs.js";
+import { getDinosaurWord } from "./utils/getDinosaurWord.js";
 
 //CONSTANTS
 
@@ -23,6 +25,13 @@ placeholder="Search PaleoArchive..."
 <option value="Jurassic">Jurassic</option>
 <option value="Cretaceous">Cretaceous</option>
 </select>
+
+<select id="sortOrder">
+<option value="az">Name: A-Z</option>
+<option value="za">Name: Z-A</option>
+</select>
+
+<button id="resetFilters">Reset Filters</button>
 <p id="resultCount"></p>
 
 <section id="archive"></section>
@@ -30,42 +39,14 @@ placeholder="Search PaleoArchive..."
 
 `;
 
-// DATA
-
-const dinosaurs = [
-  {
-    id: 1,
-    name: "Tyrannosaurus rex",
-    period: "Late Cretaceous",
-    diet: "Carnivore",
-    location: "North America",
-    description: "A large theropod dinosaur from the Late Cretaceous period.",
-    formation: "Hell Creek Formation",
-    discovered: 1905,
-  },
-  {
-    id: 2,
-    name: "Stegosaurus stenops",
-    period: "Late Jurassic",
-    diet: "Herbivore",
-    location: "North America",
-  },
-  {
-    id: 3,
-    name: "Velociraptor mongoliensis",
-    period: "Late Cretaceous",
-    diet: "Carnivore",
-    location: "Asia",
-  },
-];
-
 // ELEMENTS
 
 const archive = document.querySelector("#archive");
 const searchInput = document.querySelector("#searchInput");
 const resultCount = document.querySelector("#resultCount");
 const periodFilter = document.querySelector("#periodFilter");
-
+const sortOrder = document.querySelector("#sortOrder");
+const resetFilters = document.querySelector("#resetFilters");
 // FUNCTIONS
 
 function renderDinosaurs(dinosaurList) {
@@ -86,7 +67,7 @@ function renderDinosaurs(dinosaurList) {
     archive.textContent = "No dinosaurs found. Try another search.";
   }
 
-  const word = dinosaurList.length === 1 ? "dinosaur" : "dinosaurs";
+  const word = getDinosaurWord(dinosaurList.length);
   resultCount.textContent = `${dinosaurList.length} ${word} found.`;
 }
 
@@ -126,6 +107,7 @@ function renderDinosaurDetails(dinosaur) {
 function updateDinosaurs() {
   const searchTerm = searchInput.value.toLowerCase();
   const selectedPeriod = periodFilter.value;
+  const selectedSort = sortOrder.value;
 
   const filteredDinosaurs = dinosaurs.filter((dinosaur) => {
     const matchesSearch =
@@ -137,6 +119,13 @@ function updateDinosaurs() {
       dinosaur.period.includes(selectedPeriod) || selectedPeriod === "all";
     return matchesSearch && matchesPeriod;
   });
+
+  if (selectedSort === "az") {
+    filteredDinosaurs.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectedSort === "za") {
+    filteredDinosaurs.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
   renderDinosaurs(filteredDinosaurs);
 }
 
@@ -144,6 +133,7 @@ function updateDinosaurs() {
 
 searchInput.addEventListener("input", updateDinosaurs);
 periodFilter.addEventListener("change", updateDinosaurs);
+sortOrder.addEventListener("change", updateDinosaurs);
 archive.addEventListener("click", (event) => {
   const card = event.target.closest("article");
 
@@ -157,6 +147,13 @@ archive.addEventListener("click", (event) => {
     return dinosaur.id === dinosaurId;
   });
   renderDinosaurDetails(selectedDinosaur);
+});
+
+resetFilters.addEventListener("click", () => {
+  searchInput.value = "";
+  periodFilter.value = "all";
+  sortOrder.value = "az";
+  updateDinosaurs();
 });
 
 //START APP
