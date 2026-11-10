@@ -39,6 +39,9 @@ const dinosaurs = [
     period: "Late Cretaceous",
     diet: "Carnivore",
     location: "North America",
+    description: "A large theropod dinosaur from the Late Cretaceous period.",
+    formation: "Hell Creek Formation",
+    discovered: 1905,
   },
   {
     id: 2,
@@ -71,9 +74,9 @@ function renderDinosaurs(dinosaurList) {
       return `
   <article data-id="${dinosaur.id}">
 <h2>${dinosaur.name}</h2>
-<p>Period: ${dinosaur.period}</p>
-<p>Diet: ${dinosaur.diet}</p>
-<p>Location: ${dinosaur.location}</p>
+<p>Period: ${dinosaur.period || "Unknown"}</p>
+<p>Diet: ${dinosaur.diet || "Unknown"}</p>
+<p>Location: ${dinosaur.location || "Unknown"}</p>
 </article>
 `;
     })
@@ -93,16 +96,30 @@ function renderDinosaurDetails(dinosaur) {
 
    <article class="detail-card">
    <h2>${dinosaur.name}</h2>
-   <p>Period: ${dinosaur.period}</p>
-   <p>Diet: ${dinosaur.diet}</p>
-   <p>Location: ${dinosaur.location}</p>
+   <section class="overview">
+   <h3>Overview</h3>
+   <p>Description: ${dinosaur.description || "No description available."}</p>
+   <p>Diet: ${dinosaur.diet || "Unknown"}</p>
+   <p>Location: ${dinosaur.location || "Unknown"}</p>
+   </section>
+
+   <section class="geology">
+   <h3>Geology</h3>
+   <p>Period: ${dinosaur.period || "Unknown"}</p>
+   <p>Formation: ${dinosaur.formation || "Unknown"}</p>
+    </section>
+
+    <section class="discovery">
+    <h3>Discovery</h3>
+   <p>Species named: ${dinosaur.discovered || "Unknown"}</p>
+   </section>
    </article>
   
   `;
   const backButton = document.querySelector("#backButton");
 
   backButton.addEventListener("click", () => {
-    renderDinosaurs(dinosaurs);
+    updateDinosaurs(dinosaurs);
   });
 }
 
@@ -130,7 +147,7 @@ periodFilter.addEventListener("change", updateDinosaurs);
 archive.addEventListener("click", (event) => {
   const card = event.target.closest("article");
 
-  if (!card) {
+  if (!card || !card.dataset.id) {
     return;
   }
 
