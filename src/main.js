@@ -15,10 +15,13 @@ app.innerHTML = `
 </header>
 
 <main>
+<label for="searchInput">Search Dinosaurs</label>
 <input type="text" 
 id="searchInput"
 placeholder="Search PaleoArchive..."
 >
+
+<label for="periodFilter">Filter by Period</label>
 <select id="periodFilter">
 <option value="all">All Periods</option>
 <option value="Triassic">Triassic</option>
@@ -26,6 +29,7 @@ placeholder="Search PaleoArchive..."
 <option value="Cretaceous">Cretaceous</option>
 </select>
 
+<label for="sortOrder">Sort Dinosaurs</label>
 <select id="sortOrder">
 <option value="az">Name: A-Z</option>
 <option value="za">Name: Z-A</option>
@@ -54,10 +58,12 @@ function renderDinosaurs(dinosaurList) {
     .map((dinosaur) => {
       return `
   <article data-id="${dinosaur.id}">
+  <button>
 <h2>${dinosaur.name}</h2>
 <p>Period: ${dinosaur.period || "Unknown"}</p>
 <p>Diet: ${dinosaur.diet || "Unknown"}</p>
 <p>Location: ${dinosaur.location || "Unknown"}</p>
+</button>
 </article>
 `;
     })
@@ -77,11 +83,27 @@ function renderDinosaurDetails(dinosaur) {
 
    <article class="detail-card">
    <h2>${dinosaur.name}</h2>
+   <p class="detail-meta">Period: ${dinosaur.period || "Unknown"} · Diet: ${dinosaur.diet || "Unknown"} · Location: ${dinosaur.location || "Unknown"}</p>
    <section class="overview">
    <h3>Overview</h3>
-   <p>Description: ${dinosaur.description || "No description available."}</p>
-   <p>Diet: ${dinosaur.diet || "Unknown"}</p>
-   <p>Location: ${dinosaur.location || "Unknown"}</p>
+   <p>${dinosaur.description || "No description available."}</p>
+   </section>
+
+   <section class="quick-facts">
+   <h3>Quick Facts</h3>
+   <p>Period: ${dinosaur.period || "Unknown"}</p>
+   <div class="fact">
+    <p>Diet: ${dinosaur.diet || "Unknown"}</p>
+    </div>
+    <div class="fact">
+    <p>Species named: ${dinosaur.discovered || "Unknown"}</p>
+    </div>
+    <div class="fact">
+    <p>Location: ${dinosaur.location || "Unknown"}</p>
+    </div>
+    <div class="fact">
+    <p>Formation: ${dinosaur.formation || "Unknown"}</p>
+    </div>
    </section>
 
    <section class="geology">
