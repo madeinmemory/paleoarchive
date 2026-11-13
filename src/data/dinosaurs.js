@@ -10,6 +10,8 @@ export const dinosaurs = [
     description: "A large theropod dinosaur from the Late Cretaceous period.",
     formation: "Hell Creek Formation",
     discovered: 1905,
+    image: "/images/trex.png",
+    model: "/models/trex.glb",
   },
   {
     id: 2,

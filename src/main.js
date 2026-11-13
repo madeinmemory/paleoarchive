@@ -1,6 +1,7 @@
 import "./style.css";
 import { dinosaurs } from "./data/dinosaurs.js";
 import { getDinosaurWord } from "./utils/getDinosaurWord.js";
+import "@google/model-viewer";
 
 //CONSTANTS
 
@@ -84,6 +85,9 @@ function renderDinosaurDetails(dinosaur) {
    <article class="detail-card">
    <h2>${dinosaur.name}</h2>
    <p class="detail-meta">Period: ${dinosaur.period || "Unknown"} · Diet: ${dinosaur.diet || "Unknown"} · Location: ${dinosaur.location || "Unknown"}</p>
+   ${dinosaur.model ? `<button id="showIllustration">Show Illustration</button> <button id="showSkeleton">Show Skeleton</button>` : ""}
+   ${dinosaur.image ? `<img class="dinosaur-hero" id="illustrationView" src="${dinosaur.image}" alt="Illustrated reconstruction of ${dinosaur.name}" />` : ""}
+   ${dinosaur.model ? `<model-viewer class="dinosaur-model" id="skeletonView" hidden src="${dinosaur.model}" alt="Interactive 3D model of ${dinosaur.name}" auto-rotate auto-rotate-delay="0" rotation-per-second="5deg" camera-controls ></model-viewer>` : ""}
    <section class="overview">
    <h3>Overview</h3>
    <p>${dinosaur.description || "No description available."}</p>
@@ -91,18 +95,25 @@ function renderDinosaurDetails(dinosaur) {
 
    <section class="quick-facts">
    <h3>Quick Facts</h3>
-   <p>Period: ${dinosaur.period || "Unknown"}</p>
    <div class="fact">
-    <p>Diet: ${dinosaur.diet || "Unknown"}</p>
+   <span class="fact-label">Period:</span>
+   <p class="fact-value"> ${dinosaur.period || "Unknown"}</p>
+   </div>
+   <div class="fact">
+    <span class="fact-label">Diet:</span>
+    <p class="fact-value"> ${dinosaur.diet || "Unknown"}</p>
     </div>
     <div class="fact">
-    <p>Species named: ${dinosaur.discovered || "Unknown"}</p>
+    <span class="fact-label">Species named:</span>
+    <p class="fact-value"> ${dinosaur.discovered || "Unknown"}</p>
     </div>
     <div class="fact">
-    <p>Location: ${dinosaur.location || "Unknown"}</p>
+    <span class="fact-label">Location:</span>
+    <p class="fact-value"> ${dinosaur.location || "Unknown"}</p>
     </div>
     <div class="fact">
-    <p>Formation: ${dinosaur.formation || "Unknown"}</p>
+    <span class="fact-label">Formation:</span>
+    <p class="fact-value"> ${dinosaur.formation || "Unknown"}</p>
     </div>
    </section>
 
@@ -124,6 +135,22 @@ function renderDinosaurDetails(dinosaur) {
   backButton.addEventListener("click", () => {
     updateDinosaurs(dinosaurs);
   });
+
+  const illustrationView = document.querySelector("#illustrationView");
+  const skeletonView = document.querySelector("#skeletonView");
+  const showIllustration = document.querySelector("#showIllustration");
+  const showSkeleton = document.querySelector("#showSkeleton");
+
+  if (dinosaur.model && dinosaur.image) {
+    showIllustration.addEventListener("click", () => {
+      illustrationView.hidden = false;
+      skeletonView.hidden = true;
+    });
+    showSkeleton.addEventListener("click", () => {
+      illustrationView.hidden = true;
+      skeletonView.hidden = false;
+    });
+  }
 }
 
 function updateDinosaurs() {
