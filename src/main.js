@@ -10,9 +10,13 @@ import "@google/model-viewer";
 const app = document.querySelector("#app");
 
 app.innerHTML = `
-<header>
-<h1>PaleoArchive</h1>
-<p>Explore prehistoric life.</p>
+<header class="site-header">
+  <p class="site-label">DIGITAL NATURAL HISTORY ARCHIVE</p>
+  <h1>PaleoArchive</h1>
+  <p class="site-description">
+    Explore prehistoric life through interactive exhibits,
+    scientific discoveries, and ancient species.
+  </p>
 </header>
 
 <main>
@@ -84,14 +88,12 @@ function renderDinosaurDetails(dinosaur) {
 
    <article class="detail-card">
    <h2>${dinosaur.name}</h2>
-   <p class="detail-meta">Period: ${dinosaur.period || "Unknown"} · Diet: ${dinosaur.diet || "Unknown"} · Location: ${dinosaur.location || "Unknown"}</p>
-   ${dinosaur.model ? `<button id="showIllustration">Show Illustration</button> <button id="showSkeleton">Show Skeleton</button>` : ""}
+
+   <p class="dinosaur-intro"> ${dinosaur.intro || "Explore this prehistoric dinosaur."}</p>
+  
+   ${dinosaur.model ? `<div class="view-toggle"><button id="showIllustration" class="active" aria-pressed="true">Show Illustration</button> <button id="showSkeleton" class="active" aria-pressed="false">Show Skeleton</button></div>` : ""}
    ${dinosaur.image ? `<img class="dinosaur-hero" id="illustrationView" src="${dinosaur.image}" alt="Illustrated reconstruction of ${dinosaur.name}" />` : ""}
    ${dinosaur.model ? `<model-viewer class="dinosaur-model" id="skeletonView" hidden src="${dinosaur.model}" alt="Interactive 3D model of ${dinosaur.name}" auto-rotate auto-rotate-delay="0" rotation-per-second="5deg" camera-controls ></model-viewer>` : ""}
-   <section class="overview">
-   <h3>Overview</h3>
-   <p>${dinosaur.description || "No description available."}</p>
-   </section>
 
    <section class="quick-facts">
    <h3>Quick Facts</h3>
@@ -117,15 +119,12 @@ function renderDinosaurDetails(dinosaur) {
     </div>
    </section>
 
-   <section class="geology">
-   <h3>Geology</h3>
-   <p>Period: ${dinosaur.period || "Unknown"}</p>
-   <p>Formation: ${dinosaur.formation || "Unknown"}</p>
-    </section>
+   <section class="dinosaur-story">
+   <h3>About ${dinosaur.name}</h3>
 
-    <section class="discovery">
-    <h3>Discovery</h3>
-   <p>Species named: ${dinosaur.discovered || "Unknown"}</p>
+   <p>${dinosaur.description || "No description available."}</p>
+
+   ${dinosaur.fossils ? `<p>${dinosaur.fossils}</p>` : ""}
    </section>
    </article>
   
@@ -145,10 +144,18 @@ function renderDinosaurDetails(dinosaur) {
     showIllustration.addEventListener("click", () => {
       illustrationView.hidden = false;
       skeletonView.hidden = true;
+      showIllustration.classList.add("active");
+      showSkeleton.classList.remove("active");
+      showIllustration.setAttribute("aria-pressed", "true");
+      showSkeleton.setAttribute("aria-pressed", "false");
     });
     showSkeleton.addEventListener("click", () => {
+      showSkeleton.classList.add("active");
+      showIllustration.classList.remove("active");
       illustrationView.hidden = true;
       skeletonView.hidden = false;
+      showSkeleton.setAttribute("aria-pressed", "true");
+      showIllustration.setAttribute("aria-pressed", "false");
     });
   }
 }

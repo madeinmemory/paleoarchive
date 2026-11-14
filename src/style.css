@@ -1,3 +1,52 @@
+/* GLOBAL STYLES */
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #171b17;
+  color: #f1efe6;
+  font-family: system-ui, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* SITE HEADER */
+
+.site-header {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid #343a2f;
+  margin-bottom: 32px;
+}
+
+.site-label {
+  color: #a6ad9f;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.site-header h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 12px 0;
+  letter-spacing: -1.5px;
+}
+
+.site-description {
+  color: #a6ad9f;
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
 /* DINOSAUR GRID */
 
 #archive {
@@ -9,7 +58,7 @@
 /* DINOSAUR CARDS */
 
 article {
-  padding: 20px;
+  padding: 24px;
   background-color: #1b1e19;
   border: 1px solid #343a2f;
   border-radius: 10px;
@@ -30,8 +79,10 @@ article {
   gap: 20px;
 }
 
-.detail-card h2 {
+.detail-card > h2 {
   grid-column: 1 / -1;
+  margin-bottom: 0;
+  color: #f5f5f5;
 }
 
 /* BUTTONS */
@@ -47,9 +98,6 @@ article {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .quick-facts h3 {
@@ -90,4 +138,76 @@ article {
   height: 420px;
   background-color: #242424;
   border-radius: 12px;
+}
+
+.dinosaur-model[hidden] {
+  display: none;
+}
+
+/* VIEW TOGGLE */
+
+.view-toggle {
+  display: flex;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+
+.view-toggle button {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #1b1e19;
+  color: #f1efe6;
+  border: 1px solid #343a2f;
+  cursor: pointer;
+}
+
+.view-toggle button:hover {
+  background-color: #343a2f;
+}
+
+.view-toggle button.active {
+  background-color: #555;
+  color: white;
+  border: 1px solid #888;
+}
+
+/* DINOSAUR STORY */
+
+.dinosaur-story {
+  grid-column: 1 / -1;
+  max-width: 75ch;
+  line-height: 1.7;
+}
+
+.dinosaur-story p {
+  margin-bottom: 16px;
+}
+
+.detail-card .dinosaur-story {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* DINOSAUR INTRO */
+
+.dinosaur-intro {
+  grid-column: 1 / -1;
+  color: #bcbcbc;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 70ch;
+  margin-top: 0;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+  .quick-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .dinosaur-model {
+    height: 300px;
+  }
 }
