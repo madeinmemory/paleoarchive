@@ -20,12 +20,20 @@ app.innerHTML = `
 </header>
 
 <main>
+<section class="archive-controls">
+<h2>Explore the Collection</h2>
+
+<div class="search-field">
+
 <label for="searchInput">Search Dinosaurs</label>
 <input type="text" 
 id="searchInput"
 placeholder="Search PaleoArchive..."
 >
+</div>
 
+<div class="filter-row">
+<div class="filter-field">
 <label for="periodFilter">Filter by Period</label>
 <select id="periodFilter">
 <option value="all">All Periods</option>
@@ -33,15 +41,23 @@ placeholder="Search PaleoArchive..."
 <option value="Jurassic">Jurassic</option>
 <option value="Cretaceous">Cretaceous</option>
 </select>
+</div>
 
+<div class="filter-field">
 <label for="sortOrder">Sort Dinosaurs</label>
 <select id="sortOrder">
 <option value="az">Name: A-Z</option>
 <option value="za">Name: Z-A</option>
 </select>
+</div>
+</div>
 
-<button id="resetFilters">Reset Filters</button>
+<div class="results-toolbar">
 <p id="resultCount"></p>
+<button id="resetFilters">Reset Filters</button>
+</div>
+
+</section>
 
 <section id="archive"></section>
 </main>
@@ -62,15 +78,30 @@ function renderDinosaurs(dinosaurList) {
   archive.innerHTML = dinosaurList
     .map((dinosaur) => {
       return `
-  <article data-id="${dinosaur.id}">
-  <button>
-<h2>${dinosaur.name}</h2>
-<p>Period: ${dinosaur.period || "Unknown"}</p>
-<p>Diet: ${dinosaur.diet || "Unknown"}</p>
-<p>Location: ${dinosaur.location || "Unknown"}</p>
-</button>
-</article>
-`;
+        <article class="dinosaur-card" data-id="${dinosaur.id}">
+          <button type="button" class="card-button">
+
+            ${
+              dinosaur.cardImage
+                ? `
+              <img
+                class="card-image"
+                src="${dinosaur.cardImage}"
+                alt=""
+                loading="lazy"
+              >
+            `
+                : ""
+            }
+
+            <div class="card-content">
+              <h2>${dinosaur.name}</h2>
+              <span class="learn-more">Learn More →</span>
+            </div>
+
+          </button>
+        </article>
+      `;
     })
     .join("");
 

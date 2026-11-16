@@ -3,7 +3,9 @@
 body {
   margin: 0;
   min-width: 320px;
-  background-color: #171b17;
+  background:
+    radial-gradient(circle at top, rgba(92, 107, 79, 0.18), transparent 35%),
+    linear-gradient(180deg, #1b211b 0%, #171b17 45%, #121512 100%);
   color: #f1efe6;
   font-family: system-ui, sans-serif;
 }
@@ -23,9 +25,14 @@ select {
 /* SITE HEADER */
 
 .site-header {
-  padding: 48px 0 32px;
-  border-bottom: 1px solid #343a2f;
+  padding: 72px 32px 56px;
+  border: 1px solid #343a2f;
+  border-radius: 16px;
+  margin: 32px 0;
   margin-bottom: 32px;
+  background:
+    linear-gradient(rgba(20, 24, 20, 0.72), rgba(20, 24, 20, 0.88)),
+    url("/images/banner-placeholder.jpg") center / cover no-repeat;
 }
 
 .site-label {
@@ -47,7 +54,7 @@ select {
   max-width: 70ch;
 }
 
-/* DINOSAUR GRID */
+/* DINOSAUR/ARCHIVE GRID */
 
 #archive {
   display: grid;
@@ -57,11 +64,53 @@ select {
 
 /* DINOSAUR CARDS */
 
-article {
-  padding: 24px;
-  background-color: #1b1e19;
-  border: 1px solid #343a2f;
-  border-radius: 10px;
+.dinosaur-card {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 15px;
+}
+
+.card-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background-color: #252a23;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 48px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.card-content h2 {
+  color: #f1efe6;
+  font-size: 1.2rem;
+  margin: 0 0 8px;
+}
+
+.learn-more {
+  color: #c4d4ba;
+  font-size: 0.9rem;
 }
 
 /* DETAIL VIEW SECTIONS & DETAIL CARD */
@@ -77,6 +126,10 @@ article {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  padding: 24px;
+  background-color: #1b1e19;
+  border: 1px solid #343a2f;
+  border-radius: 10px;
 }
 
 .detail-card > h2 {
@@ -198,6 +251,104 @@ article {
   line-height: 1.6;
   max-width: 70ch;
   margin-top: 0;
+}
+
+/* ARCHIVE CONTROLS */
+
+.archive-controls {
+  padding: 24px;
+  margin-bottom: 32px;
+  background-color: #1b1e19;
+  border: 1px solid #343a2f;
+  border-radius: 12px;
+}
+
+.archive-controls h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.archive-controls input,
+.archive-controls select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #252a23;
+  color: #f1efe6;
+  border: 1px solid #343a2f;
+  border-radius: 8px;
+}
+
+.archive-controls label {
+  color: #bcbcbc;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.archive-controls input:focus-visible,
+.archive-controls select:focus-visible {
+  outline: 2px solid #a6ad9f;
+  outline-offset: 2px;
+}
+
+/* SEARCH AND FILTER */
+
+.search-field,
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-field {
+  margin-bottom: 20px;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* RESULTS TOOLBAR */
+
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #343a2f;
+}
+
+#resultCount {
+  margin: 0;
+  color: #a6ad9f;
+  font-size: 14px;
+}
+
+/* RESET STYLING */
+
+#resetFilters {
+  padding: 10px 17px;
+  background-color: #252a23;
+  color: #f1efe6;
+  border: 1px solid #454e41;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#resetFilters:hover {
+  background-color: #343a2f;
+}
+
+#resetFilters:focus-visible {
+  outline: 2px solid #a6ad9f;
+  outline-offset: 3px;
 }
 
 /* RESPONSIVE DESIGN */

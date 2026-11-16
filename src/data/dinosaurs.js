@@ -14,6 +14,7 @@ export const dinosaurs = [
       "A massive carnivorous theropod dinosaur that lived during the Late Cretaceous in what is now North America.",
     image: "/images/trex.png",
     model: "/models/trex.glb",
+    cardImage: "/images/trex-card.png",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ export const dinosaurs = [
       "A large herbivorous dinosaur known for its distinctive back plates and tail spikes.",
     formation: "Morrison Formation",
     discovered: 1887,
+    cardImage: "/images/stego-card.png",
   },
   {
     id: 3,
@@ -36,5 +38,6 @@ export const dinosaurs = [
       "A small, feathered theropod dinosaur that lived during the Late Cretaceous in what is now Mongolia.",
     formation: "Djadochta Formation",
     discovered: 1924,
+    cardImage: "/images/raptor-card.png",
   },
 ];
