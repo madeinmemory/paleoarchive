@@ -1,6 +1,7 @@
 import "./style.css";
 import { dinosaurs } from "./data/dinosaurs.js";
 import { getDinosaurWord } from "./utils/getDinosaurWord.js";
+import { setupCardReveal } from "./animations/cardReveal.js";
 import "@google/model-viewer";
 
 //CONSTANTS
@@ -111,6 +112,8 @@ function renderDinosaurs(dinosaurList) {
 
   const word = getDinosaurWord(dinosaurList.length);
   resultCount.textContent = `${dinosaurList.length} ${word} found.`;
+
+  setupCardReveal(archive);
 }
 
 function renderDinosaurDetails(dinosaur) {

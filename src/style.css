@@ -70,6 +70,72 @@ select {
   position: relative;
   aspect-ratio: 4 / 3;
   border-radius: 15px;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* CARD HOVER EFFECT */
+
+@media (hover: hover) {
+  .dinosaur-card:hover {
+    transform: translateY(-6px);
+    border-color: #91a28a;
+  }
+}
+
+.dinosaur-card:focus-within {
+  border-color: #91a28a;
+}
+
+.dinosaur-card.reveal-pending {
+  opacity: 0;
+}
+
+.dinosaur-card.reveal-pending.is-visible {
+  opacity: 1;
+  animation: fadeUp 0.9s ease-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .dinosaur-card {
+    transition: none;
+  }
+
+  .dinosaur-card:hover {
+    transform: none;
+  }
+
+  .dinosaur-card.reveal-pending {
+    opacity: 1;
+  }
+
+  .dinosaur-card.reveal-pending.is-visible {
+    animation: none;
+  }
+
+  #backButton:hover {
+    transition: none;
+  }
+
+  #backButton:hover {
+    transform: none;
+  }
 }
 
 .card-button {
@@ -142,6 +208,26 @@ select {
 
 #backButton {
   grid-column: 1 / -1;
+  justify-self: start;
+  padding: 12px 18px;
+  background-color: #252a23;
+  color: #f1efe6;
+  border: 1px solid #454e41;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#backButton:hover {
+  background-color: #343a2f;
+  transform: translateX(-3px);
+}
+
+#backButton:focus-visible {
+  outline: 2px solid #a6ad9f;
+  outline-offset: 3px;
 }
 
 /* QUICK FACTS AND FACTS */
@@ -151,28 +237,34 @@ select {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  border: 1px solid #454c3e;
 }
 
 .quick-facts h3 {
   grid-column: 1 / -1;
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  color: #f1efe6;
 }
 
 .fact {
-  padding: 16px;
-  background-color: #262626;
-  border-radius: 12px;
+  padding: 18px;
+  background-color: #1b211b;
+  border-radius: 10px;
+  border: 1px solid #394638;
 }
 
 .fact-label {
   font-size: 14px;
-  color: #b0b0b0;
+  color: #a6ad9f;
 }
 
 .fact-value {
-  font-size: 20px;
-  color: #f2f2f2;
-  font-weight: 500;
+  font-size: 18px;
+  color: #f1efe6;
+  font-weight: 600;
   margin: 6px 0 0;
+  line-height: 1.4;
 }
 
 /* DINOSAUR HERO IMAGE AND MODEL */
