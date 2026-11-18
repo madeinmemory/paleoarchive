@@ -272,9 +272,12 @@ select {
 .dinosaur-hero {
   grid-column: 1 / -1;
   width: 100%;
-  max-height: 450px;
-  object-fit: contain;
   border-radius: 12px;
+  height: auto;
+  max-width: 600px;
+  align-self: center;
+  border: 1px solid #445441;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .dinosaur-model {
@@ -287,6 +290,20 @@ select {
 
 .dinosaur-model[hidden] {
   display: none;
+}
+
+/* DISPLAY PANEL */
+
+.exhibit-media {
+  grid-column: 1 / -1;
+  padding: 20px;
+  background-color: #202720;
+  border: 1px solid #455441;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 /* VIEW TOGGLE */

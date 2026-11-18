@@ -34,7 +34,7 @@ export const dinosaurs = [
     fossils:
       "Stegosaurus stenops was formally described by paleontologist Othniel Charles Marsh in 1887. Fossils discovered in the Morrison Formation have provided valuable evidence about its anatomy and behavior. Several well-preserved specimens have helped researchers reconstruct its unusual skeletal structure, including its plates and tail spikes. Evidence of injuries to other dinosaurs suggests that Stegosaurus could use its spiked tail defensively.",
     image: "/images/stego.png",
-    model: "",
+    model: "/models/stego.glb",
     cardImage: "/images/stego-card.png",
   },
   {
@@ -54,5 +54,23 @@ export const dinosaurs = [
     image: "/images/raptor.png",
     model: "",
     cardImage: "/images/raptor-card.png",
+  },
+  {
+    id: 4,
+    name: "Coelophysis bauri",
+    period: "Triassic",
+    diet: "Carnivore",
+    location: "North America (New Mexico)",
+    description:
+      'Coelophysis was an early theropod dinosaur characterized by its lightweight body, long neck, slender legs, and narrow skull. Its name means "hollow form," referring to its lightly built bones. This small carnivore walked on two legs and likely hunted smaller animals in the ancient environments of what is now the southwestern United States.',
+    formation: "Chinle Formation",
+    discovered: 1887,
+    intro:
+      "A slender, fast-moving predator that roamed North America during the Late Triassic, long before the age of giant dinosaurs.",
+    fossils:
+      "Coelophysis is particularly famous for the remarkable fossil discoveries at Ghost Ranch, New Mexico. In 1947, researchers uncovered a dense concentration of skeletons, providing scientists with unusually detailed evidence about this early dinosaur. The discovery helped make Coelophysis one of the best-known dinosaurs of the Triassic Period.",
+    image: "/images/coelophysis.png",
+    model: "/models/coelophysis.glb",
+    cardImage: "/images/coelophysis-card.png",
   },
 ];

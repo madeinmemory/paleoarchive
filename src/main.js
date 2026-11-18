@@ -124,10 +124,13 @@ function renderDinosaurDetails(dinosaur) {
    <h2>${dinosaur.name}</h2>
 
    <p class="dinosaur-intro"> ${dinosaur.intro || "Explore this prehistoric dinosaur."}</p>
-  
+
+   <div class="exhibit-media">
+
    ${dinosaur.model ? `<div class="view-toggle"><button id="showIllustration" class="active" aria-pressed="true">Show Illustration</button> <button id="showSkeleton" class="active" aria-pressed="false">Show Skeleton</button></div>` : ""}
    ${dinosaur.image ? `<img class="dinosaur-hero" id="illustrationView" src="${dinosaur.image}" alt="Illustrated reconstruction of ${dinosaur.name}" />` : ""}
    ${dinosaur.model ? `<model-viewer class="dinosaur-model" id="skeletonView" hidden src="${dinosaur.model}" alt="Interactive 3D model of ${dinosaur.name}" auto-rotate auto-rotate-delay="0" rotation-per-second="5deg" camera-controls ></model-viewer>` : ""}
+   </div>
 
    <section class="quick-facts">
    <h3>Quick Facts</h3>
