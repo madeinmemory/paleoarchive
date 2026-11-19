@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+public/models/allosaurus.glb
+public/models/diplodocus.glb
+public/models/plateosaurus.glb
