@@ -1,10 +1,9 @@
+// IMPORTS
+
 import "./style.css";
 import { dinosaurs } from "./data/dinosaurs.js";
 import { getDinosaurWord } from "./utils/getDinosaurWord.js";
 import { setupCardReveal } from "./animations/cardReveal.js";
-import "@google/model-viewer";
-
-//CONSTANTS
 
 //APP
 
@@ -61,6 +60,17 @@ placeholder="Search PaleoArchive..."
 </section>
 
 <section id="archive"></section>
+
+<section class="coming-soon" id="comingSoon">
+  <p class="coming-soon-label">THE ARCHIVE IS GROWING</p>
+  <h2>More Dinosaurs Coming Soon</h2>
+  <p>New prehistoric exhibits are on the horizon. Stay tuned for future additions.</p>
+</section>
+
+<footer class="site-footer">
+  <span>PaleoArchive</span>
+  <span>v1.0</span>
+</footer>
 </main>
 
 `;
@@ -73,9 +83,11 @@ const resultCount = document.querySelector("#resultCount");
 const periodFilter = document.querySelector("#periodFilter");
 const sortOrder = document.querySelector("#sortOrder");
 const resetFilters = document.querySelector("#resetFilters");
+const comingSoon = document.querySelector("#comingSoon");
 // FUNCTIONS
 
 function renderDinosaurs(dinosaurList) {
+  comingSoon.hidden = false;
   archive.innerHTML = dinosaurList
     .map((dinosaur) => {
       return `
@@ -117,6 +129,7 @@ function renderDinosaurs(dinosaurList) {
 }
 
 function renderDinosaurDetails(dinosaur) {
+  comingSoon.hidden = true;
   archive.innerHTML = `
    <button id="backButton">← Back to archive</button>
 
@@ -127,10 +140,25 @@ function renderDinosaurDetails(dinosaur) {
 
    <div class="exhibit-media">
 
-   ${dinosaur.model ? `<div class="view-toggle"><button id="showIllustration" class="active" aria-pressed="true">Show Illustration</button> <button id="showSkeleton" class="active" aria-pressed="false">Show Skeleton</button></div>` : ""}
+   ${dinosaur.model ? `<div class="view-toggle"><button id="showIllustration" class="active" aria-pressed="true">Show Illustration</button> <button id="showSkeleton" aria-pressed="false">Show Skeleton</button></div>` : ""}
    ${dinosaur.image ? `<img class="dinosaur-hero" id="illustrationView" src="${dinosaur.image}" alt="Illustrated reconstruction of ${dinosaur.name}" />` : ""}
-   ${dinosaur.model ? `<model-viewer class="dinosaur-model" id="skeletonView" hidden src="${dinosaur.model}" alt="Interactive 3D model of ${dinosaur.name}" auto-rotate auto-rotate-delay="0" rotation-per-second="5deg" camera-controls ></model-viewer>` : ""}
+   ${dinosaur.model ? `<model-viewer class="dinosaur-model" id="skeletonView" hidden data-src="${dinosaur.model}" alt="Interactive 3D model of ${dinosaur.name}" auto-rotate auto-rotate-delay="0" rotation-per-second="5deg" camera-controls ></model-viewer>` : ""}
    </div>
+
+   ${
+     dinosaur.modelUrl
+       ? `
+  <a
+    href="${dinosaur.modelUrl}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="model-credit"
+  >
+    View original 3D model ↗
+  </a>
+`
+       : ""
+   }
 
    <section class="quick-facts">
    <h3>Quick Facts</h3>
@@ -186,11 +214,15 @@ function renderDinosaurDetails(dinosaur) {
       showIllustration.setAttribute("aria-pressed", "true");
       showSkeleton.setAttribute("aria-pressed", "false");
     });
-    showSkeleton.addEventListener("click", () => {
+    showSkeleton.addEventListener("click", async () => {
       showSkeleton.classList.add("active");
       showIllustration.classList.remove("active");
       illustrationView.hidden = true;
       skeletonView.hidden = false;
+      if (!skeletonView.hasAttribute("src")) {
+        await import("@google/model-viewer");
+        skeletonView.src = skeletonView.dataset.src;
+      }
       showSkeleton.setAttribute("aria-pressed", "true");
       showIllustration.setAttribute("aria-pressed", "false");
     });

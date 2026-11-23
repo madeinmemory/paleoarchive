@@ -18,6 +18,8 @@ export const dinosaurs = [
     image: "/images/trex.png",
     model: "/models/trex.glb",
     cardImage: "/images/trex-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/tyrannosaurus-rex-skeleton-9aabc82e228141b2b8bba56849032430",
   },
   {
     id: 2,
@@ -36,6 +38,8 @@ export const dinosaurs = [
     image: "/images/stego.png",
     model: "/models/stego.glb",
     cardImage: "/images/stego-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/stegosaurus-skeleton-bca2e8f0a4e84cdda146bbd286f0e84a?",
   },
   {
     id: 3,
@@ -54,6 +58,8 @@ export const dinosaurs = [
     image: "/images/parasaurolophus.png",
     model: "/models/parasaurolophus.glb",
     cardImage: "/images/parasaurolophus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/baby-parasaurolophus-skeleton-18de87dd270f478bbbeb310cd514cc00?",
   },
   {
     id: 4,
@@ -72,6 +78,8 @@ export const dinosaurs = [
     image: "/images/coelophysis.png",
     model: "/models/coelophysis.glb",
     cardImage: "/images/coelophysis-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/coelophysis-c8fee7a21dbc465d8fae98a0df4d190e?",
   },
   {
     id: 5,
@@ -90,6 +98,8 @@ export const dinosaurs = [
     image: "/images/plateosaurus.png",
     model: "/models/plateosaurus-optimized.glb",
     cardImage: "/images/plateosaurus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/plateosaurus-skeleton-80683eb568cc46caac0649e395fa5a1b?",
   },
   {
     id: 6,
@@ -108,6 +118,8 @@ export const dinosaurs = [
     image: "/images/allosaurus.png",
     model: "/models/allosaurus-optimized.glb",
     cardImage: "/images/allosaurus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/allosaurus-skeleton-2193dcd84b694f659719b4b99c91228b?",
   },
   {
     id: 7,
@@ -126,6 +138,8 @@ export const dinosaurs = [
     image: "/images/diplodocus.png",
     model: "/models/diplodocus-optimized.glb",
     cardImage: "/images/diplodocus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/diplodocus-carnegii-nhmw-geo-190900040003-1d07ae9e002f4e8ab930dc92d07eb078?",
   },
   {
     id: 8,
@@ -144,6 +158,8 @@ export const dinosaurs = [
     image: "/images/triceratops.png",
     model: "/models/triceratops.glb",
     cardImage: "/images/triceratops-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/triceratops-skeleton-4f4e38e8c70a42f391ed2353a7b4c091?",
   },
   {
     id: 9,
@@ -162,6 +178,8 @@ export const dinosaurs = [
     image: "/images/spinosaurus.png",
     model: "/models/spinosaurus.glb",
     cardImage: "/images/spinosaurus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/spinosaurus-skeleton-3eb1da77354e4f65a29734a9a9b40a35?",
   },
   {
     id: 10,
@@ -180,6 +198,8 @@ export const dinosaurs = [
     image: "/images/protoceratops.png",
     model: "/models/protoceratops.glb",
     cardImage: "/images/protoceratops-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/protoceratops-andrewsi-nhmw-geo-201504040001-ed6e419065af422eaaa07294f55b8be1?",
   },
   {
     id: 11,
@@ -198,6 +218,8 @@ export const dinosaurs = [
     image: "/images/psittacosaurus.png",
     model: "/models/psittacosaurus.glb",
     cardImage: "/images/psittacosaurus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/psittacosaurus-mongoliensisnhmw-geo199800641-f25dc41ec23242a588772f2205410722?",
   },
   {
     id: 12,
@@ -216,5 +238,7 @@ export const dinosaurs = [
     image: "/images/carnotaurus.png",
     model: "/models/carnotaurus.glb",
     cardImage: "/images/carnotaurus-card.png",
+    modelUrl:
+      "https://sketchfab.com/3d-models/carnotaurus-sastrei-skeleton-04c8d6e0e1794091aeae0d2f54cca43b?",
   },
 ];

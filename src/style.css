@@ -460,6 +460,37 @@ select {
   outline-offset: 3px;
 }
 
+/* MODEL CREDIT */
+
+.model-credit {
+  display: inline-block;
+  color: #b8ceaa;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+/* FOOTER & COMING SOON*/
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: #9daa95;
+  border-top: 1px solid #394638;
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 32px;
+  background-color: #202720;
+  border: 1px solid #455441;
+  border-radius: 12px;
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 600px) {
