@@ -1,147 +1,185 @@
 # 🦖 PaleoArchive
 
-**PaleoArchive** is an interactive digital natural history archive built with vanilla JavaScript, HTML, and CSS.
+PaleoArchive is a dinosaur archive I built using HTML, CSS, and JavaScript.
 
-Explore prehistoric life through a collection of 12 dinosaur exhibits featuring scientific information, custom illustrations, and interactive 3D skeletal models.
+I originally started this project to get more practice with JavaScript. As I worked on it, I decided to expand it into something closer to a digital natural history museum, where users could explore different dinosaurs and learn more about them.
 
-🌐 **[Visit the Live Website](https://paleoarchive.vercel.app)**
+The website currently features 12 dinosaurs, each with its own information, illustrations, and interactive 3D skeleton.
+
+**Live Website:** https://paleoarchive.vercel.app
 
 ---
 
-## 📸 Preview
+## Project Status
+
+PaleoArchive v1.0 is complete and available online.
+
+The current version includes 12 dinosaur exhibits, along with search, filtering, sorting, illustrations, and interactive skeletons.
+
+I may return to the project in the future to add more prehistoric species or improve existing features.
+
+---
+
+## Features
+
+- 12 dinosaur exhibits
+- Search dinosaurs by name, diet, location, and geological period
+- Filter dinosaurs by geological period
+- Sort dinosaurs alphabetically
+- Interactive 3D skeletons with rotation and zoom
+- Switch between illustrations and skeletons
+- Scientific illustrations with anatomical information
+- Quick facts and dinosaur descriptions
+- Responsive layout for desktop and mobile
+- Scroll animations for dinosaur cards
+- Keyboard-friendly controls
+- Links to the original 3D models
+- Coming Soon section for future additions
+
+---
+
+## Design
+
+I wanted PaleoArchive to feel like a digital natural history museum, so I went with a dark green color scheme, prehistoric environments, and dinosaur silhouette cards.
+
+I used AI-generated artwork for the dinosaur cards and exhibit illustrations, then worked on how everything would be presented throughout the website.
+
+During development, I made adjustments to the layout, spacing, card sizes, backgrounds, and exhibit pages to make the interface feel more consistent.
+
+I also worked on making the website responsive so it could be used on both desktop and mobile screens.
+
+---
+
+## Screenshots
+
+Here are some screenshots of the finished website.
 
 ### Homepage
+
+The main page, including the introduction and search controls.
 
 ![PaleoArchive Homepage](screenshots/homepage.png)
 
 ### Dinosaur Collection
 
-![Dinosaur Collection](screenshots/gallery.png)
+The collection of 12 dinosaurs.
+
+![PaleoArchive Dinosaur Collection](screenshots/gallery.png)
 
 ### Interactive 3D Skeleton
 
-![Interactive T. rex Skeleton](screenshots/skeleton.png)
+The Tyrannosaurus rex skeleton displayed using Google Model Viewer.
 
-### Scientific Illustration
+![PaleoArchive Interactive Skeleton](screenshots/skeleton.png)
 
-![Tyrannosaurus rex Illustration](screenshots/illustration.png)
+### Dinosaur Illustration
+
+An illustrated Tyrannosaurus rex exhibit with anatomical information.
+
+![PaleoArchive Dinosaur Illustration](screenshots/illustration.png)
 
 ### Dinosaur Information
 
-![Dinosaur Quick Facts](screenshots/details.png)
+Each exhibit also includes quick facts and information about the dinosaur.
 
-### Coming Soon & Footer
+![PaleoArchive Dinosaur Information](screenshots/details.png)
+
+### Coming Soon Section
+
+The bottom of the homepage, including the Coming Soon section and footer.
 
 ![PaleoArchive Footer](screenshots/footer.png)
 
 ---
 
-## ✨ Features
+## Tech Stack
 
-- **12 Dinosaur Exhibits** — Explore prehistoric species through detailed information and artwork.
-- **Interactive 3D Skeletons** — Rotate and zoom skeletal reconstructions.
-- **Dynamic Search** — Search dinosaurs by name, diet, location, or geological period.
-- **Period Filtering** — Filter the collection by geological period.
-- **Alphabetical Sorting** — Organize dinosaurs by name.
-- **Scientific Illustrations** — View illustrated reconstructions with anatomical callouts.
-- **Responsive Design** — Layouts adapt to desktop and mobile screens.
-- **Scroll Animations** — Animated cards using the Intersection Observer API.
-- **Accessible Controls** — Keyboard-friendly controls, visible focus states, and reduced-motion support.
-- **Model Source Links** — Direct links to the original 3D models.
-- **Coming Soon Section** — A preview of future archive additions.
+- HTML
+- CSS
+- JavaScript
+- Vite
+- Google Model Viewer
+- glTF Transform
+- Git and GitHub
+- Vercel
 
 ---
 
-## 🛠️ Built With
+## How It Works
 
-- **HTML5** — Page structure and semantic elements
-- **CSS3** — Styling, responsive layouts, and animations
-- **JavaScript (ES6+)** — Dynamic rendering, event handling, search, and filtering
-- **Vite** — Development server and production build tooling
-- **Google Model Viewer** — Interactive 3D model rendering
-- **glTF Transform** — 3D asset optimization
-- **Git & GitHub** — Version control
-- **Vercel** — Website hosting and deployment
+### Dynamic Dinosaur Data
 
----
+Instead of creating a separate HTML page for each dinosaur, I stored their information in JavaScript objects.
 
-## ⚡ Technical Highlights
+The website uses this data to generate the dinosaur cards and individual exhibit pages.
 
-### Dynamic Rendering
-
-Dinosaur cards and detail pages are generated dynamically from a structured JavaScript data collection.
-
-This allows new exhibits to be added without manually creating separate HTML pages.
+This also makes it easier to add more dinosaurs without having to create entirely new pages.
 
 ### Search, Filtering, and Sorting
 
-JavaScript dynamically updates the displayed dinosaur collection based on user input.
+I used JavaScript to make the dinosaur collection searchable and filterable.
 
-Search, geological period filtering, and alphabetical sorting work together.
+Users can search for specific dinosaurs, filter them by geological period, and sort them alphabetically.
 
-### Lazy Loading
+These features work together, and the result count updates depending on the dinosaurs being displayed.
 
-3D skeleton models are loaded only when visitors select the **Show Skeleton** option.
+### Interactive Skeletons
 
-This avoids downloading large 3D assets unnecessarily.
+Each dinosaur has an interactive 3D skeleton that users can rotate and zoom.
 
-### Dynamic Imports and Code Splitting
+I used Google's Model Viewer library to display the models and added buttons that let users switch between the illustration and skeleton views.
 
-The Google Model Viewer library is loaded on demand using JavaScript's dynamic `import()` functionality.
+### Performance Optimization
 
-This reduced the initial JavaScript bundle from approximately **1,050 KB to 26 KB**, a reduction of about **97.5%**.
+One challenge I ran into was the size of some of the 3D skeleton files.
 
-### 3D Asset Optimization
+Several models were extremely large, with some exceeding 100 MB.
 
-Large skeletal models were optimized using glTF Transform, including Draco geometry compression and WebP texture compression.
+I used glTF Transform to optimize these models, including geometry compression and texture optimization, which significantly reduced their file sizes.
 
-Several models were reduced by more than 90% in download size while maintaining their visual appearance.
+I also changed the JavaScript so the Model Viewer library is loaded when a visitor chooses to view a skeleton, rather than immediately when the website opens.
 
-### Accessibility and Responsive Design
+This reduced the initial JavaScript bundle from approximately 1 MB to 26 KB, while loading the larger viewer code separately when needed.
 
-The application supports keyboard navigation, accessible toggle-button states, reduced-motion preferences, and mobile-responsive layouts.
+### Responsive Design
 
----
+I used CSS Grid, Flexbox, and media queries to make the website work across different screen sizes.
 
-## 💻 Running Locally
-
-**1. Clone the repository**
-
-```bash
-git clone https://github.com/madeinmemory/paleoarchive.git
-```
-
-**2. Navigate into the project**
-
-```bash
-cd paleoarchive
-```
-
-**3. Install dependencies**
-
-```bash
-npm install
-```
-
-**4. Start the development server**
-
-```bash
-npm run dev
-```
-
-**5. Build for production**
-
-```bash
-npm run build
-```
+I also worked on keyboard navigation, interactive button states, and reduced-motion support.
 
 ---
 
-## 🦴 3D Model Credits
+## Running Locally
 
-PaleoArchive uses third-party dinosaur skeleton models obtained from Sketchfab.
+To run PaleoArchive locally, clone the repository:
 
-Special thanks to the artists, creators, and institutions who made these models available.
+`git clone https://github.com/madeinmemory/paleoarchive.git`
+
+Navigate to the project folder:
+
+`cd paleoarchive`
+
+Install the dependencies:
+
+`npm install`
+
+Start the development server:
+
+`npm run dev`
+
+To create a production build:
+
+`npm run build`
+
+---
+
+## 3D Model Credits
+
+The dinosaur skeleton models used in PaleoArchive were obtained from Sketchfab.
+
+I want to give credit to the creators and institutions who made these models available.
+
+Some models were compressed or optimized to reduce their file sizes and improve performance in the browser.
 
 | Dinosaur          | Creator / Source              | Original Model                                                                                                             |
 | ----------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -158,26 +196,14 @@ Special thanks to the artists, creators, and institutions who made these models 
 | Carnotaurus       | Magorius                      | [Sketchfab](https://sketchfab.com/3d-models/carnotaurus-sastrei-skeleton-04c8d6e0e1794091aeae0d2f54cca43b)                 |
 | Parasaurolophus   | Olof Moleman                  | [Sketchfab](https://sketchfab.com/3d-models/baby-parasaurolophus-skeleton-18de87dd270f478bbbeb310cd514cc00)                |
 
-Some downloaded models were modified through geometry and texture optimization for browser use. Original creators retain their respective rights.
-
-See the original Sketchfab listings for licensing information.
-
-Dinosaur illustrations and silhouette artwork were created with the assistance of AI image-generation tools and curated for visual consistency.
+The models remain the work of their respective creators and are subject to their individual licenses. Original sources are linked above.
 
 ---
 
-## 📌 Project Status
+## Author
 
-**Version:** 1.0
+Built by Alex.
 
-PaleoArchive's initial collection of 12 dinosaurs is complete and deployed.
+**Live Website:** https://paleoarchive.vercel.app
 
-Future updates may introduce additional prehistoric species, exhibits, and improvements.
-
----
-
-## 👨‍💻 Development
-
-PaleoArchive is an independent front-end development portfolio project built to practice and demonstrate JavaScript, responsive web design, DOM manipulation, performance optimization, and interactive user interfaces.
-
-**[Explore PaleoArchive](https://paleoarchive.vercel.app)**
+**GitHub Repository:** https://github.com/madeinmemory/paleoarchive
